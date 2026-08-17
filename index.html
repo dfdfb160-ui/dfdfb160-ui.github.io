@@ -1,0 +1,685 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="我的个人网站 — 关于我、技能与作品" />
+  <title>你的名字 — 个人网站</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Anton&family=Noto+Sans+SC:wght@400;500;700;900&family=Space+Grotesk:wght@400;500;700&display=swap"
+    rel="stylesheet"
+  />
+
+  <style>
+    :root {
+      /* Agence Foudre 配色 */
+      --magenta: #db3c8a;   /* Lipstick Magenta */
+      --forest: #00522d;    /* Forest Ink */
+      --chalk: #fff8f6;     /* Warm Chalk */
+      --blush: #fce5df;     /* Blush Cream */
+      --bubblegum: #f29ebd; /* Bubblegum */
+      --cotton: #e878b2;    /* Cotton Pink */
+      --lilac: #d1cfe4;     /* Lilac Mist */
+      --black: #000000;     /* Charcoal Black */
+
+      --font-display: "Anton", "Noto Sans SC", "PingFang SC", "Microsoft YaHei", sans-serif;
+      --font-body: "Space Grotesk", "Noto Sans SC", "PingFang SC", "Microsoft YaHei", sans-serif;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+    }
+
+    body {
+      background: var(--chalk);
+      color: var(--forest);
+      font-family: var(--font-body);
+      font-size: 20px;
+      line-height: 1.2;
+      overflow-x: hidden;
+    }
+
+    ::selection {
+      background: var(--magenta);
+      color: var(--chalk);
+    }
+
+    /* ============ 顶部两个粉色圆点 ============ */
+    .circle {
+      position: fixed;
+      top: 24px;
+      width: 50px;
+      height: 50px;
+      border-radius: 50%;
+      background: var(--magenta);
+      color: var(--chalk);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      z-index: 60;
+      border: none;
+      cursor: pointer;
+      transition: transform 0.25s cubic-bezier(0.22, 1, 0.36, 1), background 0.25s;
+      text-decoration: none;
+    }
+    .circle:hover {
+      transform: scale(1.12);
+      background: var(--cotton);
+    }
+    .circle-left { left: 24px; }
+    .circle-right { right: 24px; }
+    .circle svg { width: 22px; height: 22px; }
+
+    /* ============ 全屏菜单 ============ */
+    .menu-overlay {
+      position: fixed;
+      inset: 0;
+      background: var(--magenta);
+      color: var(--chalk);
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      padding: 48px;
+      z-index: 50;
+      opacity: 0;
+      visibility: hidden;
+      transition: opacity 0.4s ease, visibility 0.4s ease;
+    }
+    .menu-overlay.open {
+      opacity: 1;
+      visibility: visible;
+    }
+    .menu-overlay nav {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+    .menu-overlay a {
+      font-family: var(--font-display);
+      font-size: clamp(3rem, 10vw, 7rem);
+      line-height: 0.9;
+      color: var(--chalk);
+      text-decoration: none;
+      transition: color 0.2s, transform 0.2s;
+      display: inline-block;
+    }
+    .menu-overlay a:hover {
+      color: var(--blush);
+      transform: translateX(12px);
+    }
+    .menu-overlay .menu-meta {
+      margin-top: 48px;
+      font-size: 13px;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--blush);
+    }
+
+    /* ============ 通用容器 ============ */
+    .wrap {
+      max-width: 1440px;
+      margin: 0 auto;
+      padding: 0 clamp(24px, 6vw, 96px);
+    }
+
+    /* 区块标签（section label） */
+    .label {
+      font-size: 13px;
+      font-weight: 500;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--forest);
+      opacity: 0.75;
+      margin-bottom: 28px;
+    }
+    .label.pink { color: var(--magenta); opacity: 1; }
+
+    /* 展示标题 */
+    .display,
+    .heading {
+      font-family: var(--font-display);
+      font-weight: 900;
+      text-transform: uppercase;
+      letter-spacing: -0.01em;
+    }
+    .display {
+      font-size: clamp(4rem, 14vw, 14rem);
+      line-height: 0.82;
+      color: var(--magenta);
+    }
+    .heading {
+      font-size: clamp(3.2rem, 9vw, 7rem);
+      line-height: 0.84;
+      color: var(--forest);
+    }
+    .heading .accent,
+    .display .accent {
+      color: var(--magenta);
+    }
+    .heading .ghost {
+      color: var(--bubblegum);
+    }
+
+    /* 幽灵回响（faded echo） */
+    .echo {
+      font-family: var(--font-display);
+      font-size: clamp(7rem, 22vw, 22rem);
+      line-height: 0.8;
+      color: var(--blush);
+      position: absolute;
+      z-index: -1;
+      user-select: none;
+      pointer-events: none;
+      text-transform: uppercase;
+    }
+    .echo.bubblegum { color: var(--bubblegum); }
+
+    /* 正文 */
+    .body {
+      max-width: 60ch;
+      font-size: 20px;
+      line-height: 1.5;
+      color: var(--forest);
+    }
+    .body-sm {
+      font-size: 16px;
+      line-height: 1.5;
+      color: var(--forest);
+    }
+
+    /* 药丸标签 */
+    .pill {
+      display: inline-block;
+      font-size: 13px;
+      font-weight: 500;
+      letter-spacing: 0.02em;
+      color: var(--forest);
+      background: var(--blush);
+      border-radius: 9999px;
+      padding: 7px 16px;
+      text-decoration: none;
+      transition: background 0.2s, color 0.2s;
+    }
+    .pill:hover {
+      background: var(--magenta);
+      color: var(--chalk);
+    }
+
+    /* 文字链接 */
+    .link {
+      color: var(--forest);
+      font-weight: 500;
+      text-decoration: none;
+      border-bottom: 1px solid transparent;
+      transition: color 0.2s, border-color 0.2s;
+    }
+    .link:hover {
+      color: var(--magenta);
+      border-color: var(--magenta);
+    }
+
+    /* ============ 首屏 Hero ============ */
+    .hero {
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-end;
+      padding-top: 140px;
+      padding-bottom: clamp(48px, 8vh, 120px);
+      position: relative;
+    }
+    .hero .echo {
+      top: 16vh;
+      right: 0;
+    }
+    .hero .display {
+      max-width: 10ch;
+    }
+    .hero-body {
+      margin-top: 40px;
+      max-width: 46ch;
+    }
+    .hero-actions {
+      margin-top: 40px;
+      display: flex;
+      align-items: center;
+      gap: 28px;
+      flex-wrap: wrap;
+    }
+    .hero-actions .link { font-size: 18px; }
+
+    /* ============ 区块通用 ============ */
+    section.block {
+      padding: clamp(100px, 16vh, 200px) 0;
+      position: relative;
+    }
+    .section-head {
+      position: relative;
+      margin-bottom: clamp(48px, 8vh, 96px);
+    }
+    .section-head .echo {
+      top: -0.6em;
+      right: 0;
+    }
+
+    /* 关于 */
+    .about-grid {
+      display: grid;
+      grid-template-columns: 1.2fr 1fr;
+      gap: clamp(40px, 6vw, 96px);
+      align-items: start;
+    }
+    .stats {
+      display: flex;
+      flex-direction: column;
+      gap: 40px;
+      border-left: 1px solid var(--lilac);
+      padding-left: clamp(24px, 4vw, 56px);
+    }
+    .stat-number {
+      font-family: var(--font-display);
+      font-size: clamp(4rem, 8vw, 7rem);
+      line-height: 0.8;
+      color: var(--magenta);
+      display: block;
+    }
+    .stat-label {
+      display: block;
+      margin-top: 12px;
+      font-size: 14px;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--forest);
+      opacity: 0.7;
+    }
+
+    /* 技能列表 */
+    .skill-list {
+      list-style: none;
+      border-top: 1px solid var(--lilac);
+    }
+    .skill-row {
+      display: grid;
+      grid-template-columns: 80px 1fr 1fr;
+      gap: 24px;
+      align-items: baseline;
+      padding: clamp(28px, 4vw, 48px) 0;
+      border-bottom: 1px solid var(--lilac);
+    }
+    .skill-index {
+      font-family: var(--font-display);
+      font-size: 24px;
+      color: var(--bubblegum);
+    }
+    .skill-name {
+      font-family: var(--font-display);
+      font-size: clamp(2rem, 4.5vw, 3.4rem);
+      line-height: 0.9;
+      text-transform: uppercase;
+      color: var(--forest);
+    }
+    .skill-desc {
+      font-size: 16px;
+      line-height: 1.5;
+      color: var(--forest);
+      opacity: 0.8;
+    }
+
+    /* 作品列表 */
+    .works {
+      display: flex;
+      flex-direction: column;
+    }
+    .work {
+      display: grid;
+      grid-template-columns: 1fr 1.6fr;
+      gap: clamp(24px, 5vw, 80px);
+      padding: clamp(40px, 6vw, 72px) 0;
+      border-top: 1px solid var(--lilac);
+      text-decoration: none;
+      color: inherit;
+      position: relative;
+      transition: padding-left 0.3s cubic-bezier(0.22, 1, 0.36, 1);
+    }
+    .work:hover { padding-left: 16px; }
+    .work:last-child { border-bottom: 1px solid var(--lilac); }
+    .work-index {
+      font-family: var(--font-display);
+      font-size: clamp(3rem, 7vw, 6rem);
+      line-height: 0.8;
+      color: var(--blush);
+      transition: color 0.3s;
+    }
+    .work:hover .work-index { color: var(--magenta); }
+    .work-title {
+      font-family: var(--font-display);
+      font-size: clamp(2.2rem, 5vw, 4rem);
+      line-height: 0.9;
+      text-transform: uppercase;
+      color: var(--forest);
+      margin-bottom: 16px;
+    }
+    .work:hover .work-title { color: var(--magenta); }
+    .work-desc {
+      font-size: 17px;
+      line-height: 1.5;
+      color: var(--forest);
+      opacity: 0.8;
+      max-width: 52ch;
+      margin-bottom: 20px;
+    }
+    .work-tags { display: flex; gap: 8px; flex-wrap: wrap; }
+
+    /* 联系 */
+    .contact-links {
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+      margin-top: 32px;
+    }
+    .contact-links a {
+      font-family: var(--font-display);
+      font-size: clamp(2rem, 5vw, 4rem);
+      line-height: 0.95;
+      text-transform: uppercase;
+      color: var(--forest);
+      text-decoration: none;
+      display: inline-flex;
+      align-items: baseline;
+      gap: 16px;
+      transition: color 0.2s, transform 0.2s;
+    }
+    .contact-links a:hover {
+      color: var(--magenta);
+      transform: translateX(12px);
+    }
+    .contact-links a small {
+      font-family: var(--font-body);
+      font-size: 14px;
+      text-transform: none;
+      letter-spacing: 0.04em;
+      color: var(--forest);
+      opacity: 0.6;
+    }
+    .contact-note {
+      margin-top: 48px;
+      max-width: 48ch;
+      font-size: 16px;
+      color: var(--forest);
+      opacity: 0.7;
+    }
+
+    /* 页脚 */
+    footer {
+      border-top: 1px solid var(--lilac);
+      padding: 40px 0 56px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 16px;
+      font-size: 14px;
+      color: var(--forest);
+      opacity: 0.7;
+    }
+    footer .foot-links { display: flex; gap: 24px; }
+
+    /* 高亮卡片（棉花粉表面） */
+    .highlight {
+      background: var(--cotton);
+      color: var(--chalk);
+      border-radius: 25px;
+      padding: clamp(28px, 4vw, 48px);
+    }
+    .highlight .body,
+    .highlight .body-sm { color: var(--chalk); }
+
+    /* ============ 响应式 ============ */
+    @media (max-width: 760px) {
+      body { font-size: 17px; }
+      .circle { top: 16px; width: 44px; height: 44px; }
+      .circle-left { left: 16px; }
+      .circle-right { right: 16px; }
+      .about-grid { grid-template-columns: 1fr; }
+      .stats {
+        flex-direction: row;
+        flex-wrap: wrap;
+        gap: 32px;
+        border-left: none;
+        border-top: 1px solid var(--lilac);
+        padding-left: 0;
+        padding-top: 32px;
+      }
+      .skill-row { grid-template-columns: 48px 1fr; }
+      .skill-desc { grid-column: 2; }
+      .work { grid-template-columns: 1fr; }
+      footer { flex-direction: column; align-items: flex-start; }
+    }
+  </style>
+</head>
+<body id="top">
+
+  <!-- 左上：菜单按钮 -->
+  <button class="circle circle-left" id="menuBtn" aria-label="打开菜单">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round">
+      <line x1="4" y1="7" x2="20" y2="7" />
+      <line x1="4" y1="12" x2="20" y2="12" />
+      <line x1="4" y1="17" x2="14" y2="17" />
+    </svg>
+  </button>
+
+  <!-- 右上：品牌圆点（回到顶部） -->
+  <a class="circle circle-right" href="#top" aria-label="回到顶部">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round">
+      <polyline points="13 2 3 14 12 14 11 22 21 10 12 10 13 2" />
+    </svg>
+  </a>
+
+  <!-- 全屏菜单 -->
+  <div class="menu-overlay" id="menuOverlay">
+    <nav>
+      <a href="#about">关于我</a>
+      <a href="#skills">技能</a>
+      <a href="#works">作品</a>
+      <a href="#contact">联系</a>
+    </nav>
+    <p class="menu-meta">Portfolio — 2025 · 你的名字</p>
+  </div>
+
+  <main>
+    <!-- ============ 首屏 ============ -->
+    <section class="hero wrap">
+      <span class="echo" aria-hidden="true">你好</span>
+      <p class="label pink">个人作品集 · Portfolio 2025</p>
+      <h1 class="display">我是<br /><span class="accent">你的名字</span></h1>
+      <p class="body hero-body">
+        在这里写一句自我介绍，比如你的职业、兴趣或正在专注的事情。用深森林绿铺陈，把舞台留给大标题。
+      </p>
+      <div class="hero-actions">
+        <a class="pill" href="#works">查看作品</a>
+        <a class="link" href="#contact">联系我 →</a>
+      </div>
+    </section>
+
+    <!-- ============ 关于我 ============ -->
+    <section class="block" id="about">
+      <div class="wrap">
+        <div class="section-head">
+          <span class="echo" aria-hidden="true">关于</span>
+          <p class="label">01 · 关于我</p>
+          <h2 class="heading">你好，<span class="ghost">认识一下</span></h2>
+        </div>
+
+        <div class="about-grid">
+          <div>
+            <p class="body">
+              这里是你的个人介绍。可以写你的背景、经历、爱好，以及你对所做事情的热情。例如：我是一名产品经理 / 设计师 / 开发者，专注于创造有温度的产品。
+            </p>
+            <p class="body" style="margin-top: 24px;">
+              还可以补充你的方法论：我习惯从用户出发，用数据验证假设，把复杂问题拆解成可落地的方案。
+            </p>
+          </div>
+
+          <div class="stats">
+            <div>
+              <span class="stat-number">5+</span>
+              <span class="stat-label">年经验</span>
+            </div>
+            <div>
+              <span class="stat-number">30</span>
+              <span class="stat-label">完成项目</span>
+            </div>
+            <div>
+              <span class="stat-number">12</span>
+              <span class="stat-label">合作团队</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ 技能 ============ -->
+    <section class="block" id="skills">
+      <div class="wrap">
+        <div class="section-head">
+          <span class="echo bubblegum" aria-hidden="true">技能</span>
+          <p class="label">02 · 我的技能</p>
+          <h2 class="heading">我擅长的<span class="accent">事情</span></h2>
+        </div>
+
+        <ul class="skill-list">
+          <li class="skill-row">
+            <span class="skill-index">01</span>
+            <h3 class="skill-name">产品设计</h3>
+            <p class="skill-desc">需求分析、原型设计、用户体验研究，把想法变成可落地的产品。</p>
+          </li>
+          <li class="skill-row">
+            <span class="skill-index">02</span>
+            <h3 class="skill-name">前端开发</h3>
+            <p class="skill-desc">HTML / CSS / JavaScript，构建响应式、现代化的网页界面。</p>
+          </li>
+          <li class="skill-row">
+            <span class="skill-index">03</span>
+            <h3 class="skill-name">数据分析</h3>
+            <p class="skill-desc">用数据驱动决策，洞察用户行为，优化产品体验。</p>
+          </li>
+          <li class="skill-row">
+            <span class="skill-index">04</span>
+            <h3 class="skill-name">团队协作</h3>
+            <p class="skill-desc">跨部门沟通与项目管理，推动团队高效达成目标。</p>
+          </li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- ============ 作品 ============ -->
+    <section class="block" id="works">
+      <div class="wrap">
+        <div class="section-head">
+          <span class="echo" aria-hidden="true">作品</span>
+          <p class="label">03 · 精选作品</p>
+          <h2 class="heading">做过的一些<span class="ghost">项目</span></h2>
+        </div>
+
+        <div class="works">
+          <a class="work" href="#">
+            <span class="work-index">01</span>
+            <div>
+              <h3 class="work-title">项目名称一</h3>
+              <p class="work-desc">一句话描述这个项目解决了什么问题、带来了什么价值。</p>
+              <div class="work-tags">
+                <span class="pill">产品</span>
+                <span class="pill">设计</span>
+              </div>
+            </div>
+          </a>
+          <a class="work" href="#">
+            <span class="work-index">02</span>
+            <div>
+              <h3 class="work-title">项目名称二</h3>
+              <p class="work-desc">一句话描述这个项目解决了什么问题、带来了什么价值。</p>
+              <div class="work-tags">
+                <span class="pill">前端</span>
+                <span class="pill">UI</span>
+              </div>
+            </div>
+          </a>
+          <a class="work" href="#">
+            <span class="work-index">03</span>
+            <div>
+              <h3 class="work-title">项目名称三</h3>
+              <p class="work-desc">一句话描述这个项目解决了什么问题、带来了什么价值。</p>
+              <div class="work-tags">
+                <span class="pill">App</span>
+                <span class="pill">增长</span>
+              </div>
+            </div>
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ 联系 ============ -->
+    <section class="block" id="contact">
+      <div class="wrap">
+        <div class="section-head">
+          <span class="echo bubblegum" aria-hidden="true">联系</span>
+          <p class="label pink">04 · 联系我</p>
+          <h2 class="heading">来<span class="accent">聊聊</span></h2>
+        </div>
+
+        <div class="contact-links">
+          <a href="mailto:your@email.com">
+            邮箱 <small>your@email.com</small>
+          </a>
+          <a href="https://github.com/yourname" target="_blank" rel="noopener">
+            GitHub <small>github.com/yourname</small>
+          </a>
+          <a href="#" target="_blank" rel="noopener">
+            微博 / 微信 <small>你的账号</small>
+          </a>
+        </div>
+
+        <p class="contact-note">
+          欢迎交流与合作。无论是一起做项目、聊聊想法，还是只是想打个招呼，都可以随时联系我。
+        </p>
+      </div>
+    </section>
+  </main>
+
+  <!-- 页脚 -->
+  <footer class="wrap">
+    <span>© 2025 你的名字</span>
+    <span>用心打造每一个作品</span>
+    <div class="foot-links">
+      <a class="link" href="#top">回到顶部 ↑</a>
+    </div>
+  </footer>
+
+  <script>
+    const menuBtn = document.getElementById("menuBtn");
+    const overlay = document.getElementById("menuOverlay");
+    menuBtn.addEventListener("click", () => overlay.classList.add("open"));
+    overlay.querySelectorAll("a").forEach((a) =>
+      a.addEventListener("click", () => overlay.classList.remove("open"))
+    );
+    overlay.addEventListener("click", (e) => {
+      if (e.target === overlay) overlay.classList.remove("open");
+    });
+    document.addEventListener("keydown", (e) => {
+      if (e.key === "Escape") overlay.classList.remove("open");
+    });
+  </script>
+</body>
+</html>
