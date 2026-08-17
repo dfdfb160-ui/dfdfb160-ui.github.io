@@ -4,7 +4,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <meta name="description" content="我的个人网站 — 关于我、技能与作品" />
-  <title>你的名字 — 个人网站</title>
+  <title>马静溪 · 天天 — 个人网站</title>
 
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -45,7 +45,7 @@
       background: var(--chalk);
       color: var(--forest);
       font-family: var(--font-body);
-      font-size: 20px;
+      font-size: 18px;
       line-height: 1.2;
       overflow-x: hidden;
     }
@@ -107,7 +107,7 @@
     }
     .menu-overlay a {
       font-family: var(--font-display);
-      font-size: clamp(3rem, 10vw, 7rem);
+      font-size: clamp(2rem, 6vw, 3.5rem);
       line-height: 0.9;
       color: var(--chalk);
       text-decoration: none;
@@ -154,13 +154,13 @@
       letter-spacing: -0.01em;
     }
     .display {
-      font-size: clamp(4rem, 14vw, 14rem);
-      line-height: 0.82;
+      font-size: clamp(2.2rem, 5vw, 3.8rem);
+      line-height: 0.95;
       color: var(--magenta);
     }
     .heading {
-      font-size: clamp(3.2rem, 9vw, 7rem);
-      line-height: 0.84;
+      font-size: clamp(1.9rem, 3.5vw, 2.8rem);
+      line-height: 0.95;
       color: var(--forest);
     }
     .heading .accent,
@@ -174,7 +174,7 @@
     /* 幽灵回响（faded echo） */
     .echo {
       font-family: var(--font-display);
-      font-size: clamp(7rem, 22vw, 22rem);
+      font-size: clamp(4rem, 10vw, 9rem);
       line-height: 0.8;
       color: var(--blush);
       position: absolute;
@@ -188,13 +188,13 @@
     /* 正文 */
     .body {
       max-width: 60ch;
-      font-size: 20px;
-      line-height: 1.5;
+      font-size: 18px;
+      line-height: 1.6;
       color: var(--forest);
     }
     .body-sm {
-      font-size: 16px;
-      line-height: 1.5;
+      font-size: 15px;
+      line-height: 1.6;
       color: var(--forest);
     }
 
@@ -243,11 +243,33 @@
       top: 16vh;
       right: 0;
     }
-    .hero .display {
-      max-width: 10ch;
+    .hero-id {
+      display: flex;
+      align-items: center;
+      gap: clamp(24px, 5vw, 56px);
+      flex-wrap: wrap;
     }
-    .hero-body {
-      margin-top: 40px;
+    .avatar {
+      width: clamp(110px, 15vw, 170px);
+      height: clamp(110px, 15vw, 170px);
+      border-radius: 50%;
+      object-fit: cover;
+      border: 4px solid var(--magenta);
+      background: var(--blush);
+      flex-shrink: 0;
+    }
+    .hero-info {
+      min-width: 0;
+    }
+    .hero-info .label {
+      margin-bottom: 16px;
+    }
+    .hero-sub {
+      margin-top: 18px;
+      font-size: 18px;
+      line-height: 1.6;
+      color: var(--forest);
+      opacity: 0.85;
       max-width: 46ch;
     }
     .hero-actions {
@@ -257,7 +279,7 @@
       gap: 28px;
       flex-wrap: wrap;
     }
-    .hero-actions .link { font-size: 18px; }
+    .hero-actions .link { font-size: 17px; }
 
     /* ============ 区块通用 ============ */
     section.block {
@@ -289,7 +311,7 @@
     }
     .stat-number {
       font-family: var(--font-display);
-      font-size: clamp(4rem, 8vw, 7rem);
+      font-size: clamp(2.5rem, 5vw, 3.6rem);
       line-height: 0.8;
       color: var(--magenta);
       display: block;
@@ -324,7 +346,7 @@
     }
     .skill-name {
       font-family: var(--font-display);
-      font-size: clamp(2rem, 4.5vw, 3.4rem);
+      font-size: clamp(1.5rem, 3vw, 2.2rem);
       line-height: 0.9;
       text-transform: uppercase;
       color: var(--forest);
@@ -356,7 +378,7 @@
     .work:last-child { border-bottom: 1px solid var(--lilac); }
     .work-index {
       font-family: var(--font-display);
-      font-size: clamp(3rem, 7vw, 6rem);
+      font-size: clamp(2rem, 4vw, 3.2rem);
       line-height: 0.8;
       color: var(--blush);
       transition: color 0.3s;
@@ -364,7 +386,7 @@
     .work:hover .work-index { color: var(--magenta); }
     .work-title {
       font-family: var(--font-display);
-      font-size: clamp(2.2rem, 5vw, 4rem);
+      font-size: clamp(1.6rem, 3vw, 2.4rem);
       line-height: 0.9;
       text-transform: uppercase;
       color: var(--forest);
@@ -372,7 +394,7 @@
     }
     .work:hover .work-title { color: var(--magenta); }
     .work-desc {
-      font-size: 17px;
+      font-size: 16px;
       line-height: 1.5;
       color: var(--forest);
       opacity: 0.8;
@@ -390,7 +412,7 @@
     }
     .contact-links a {
       font-family: var(--font-display);
-      font-size: clamp(2rem, 5vw, 4rem);
+      font-size: clamp(1.5rem, 3.5vw, 2.4rem);
       line-height: 0.95;
       text-transform: uppercase;
       color: var(--forest);
@@ -494,18 +516,21 @@
       <a href="#works">作品</a>
       <a href="#contact">联系</a>
     </nav>
-    <p class="menu-meta">Portfolio — 2025 · 你的名字</p>
+    <p class="menu-meta">Portfolio · 马静溪 / 天天</p>
   </div>
 
   <main>
     <!-- ============ 首屏 ============ -->
     <section class="hero wrap">
       <span class="echo" aria-hidden="true">你好</span>
-      <p class="label pink">个人作品集 · Portfolio 2025</p>
-      <h1 class="display">我是<br /><span class="accent">你的名字</span></h1>
-      <p class="body hero-body">
-        在这里写一句自我介绍，比如你的职业、兴趣或正在专注的事情。用深森林绿铺陈，把舞台留给大标题。
-      </p>
+      <div class="hero-id">
+        <img class="avatar" src="avatar.jpg" alt="马静溪的头像" />
+        <div class="hero-info">
+          <p class="label pink">AI 产品构建者 · AI Product Builder</p>
+          <h1 class="display">马静溪<span class="accent"> / 天天</span></h1>
+          <p class="hero-sub">我是一名 AI 产品构建者，正在学习 AI 产品设计与开发。希望通过 AI 解决真实问题，把复杂技术转化为简单、实用的产品，并通过持续构建原型验证想法。</p>
+        </div>
+      </div>
       <div class="hero-actions">
         <a class="pill" href="#works">查看作品</a>
         <a class="link" href="#contact">联系我 →</a>
@@ -640,14 +665,14 @@
         </div>
 
         <div class="contact-links">
-          <a href="mailto:your@email.com">
-            邮箱 <small>your@email.com</small>
+          <a href="mailto:406281765@qq.com">
+            邮箱 <small>406281765@qq.com</small>
           </a>
-          <a href="https://github.com/yourname" target="_blank" rel="noopener">
-            GitHub <small>github.com/yourname</small>
+          <a href="https://github.com/dfdfb160-ui" target="_blank" rel="noopener">
+            GitHub <small>github.com/dfdfb160-ui</small>
           </a>
-          <a href="#" target="_blank" rel="noopener">
-            微博 / 微信 <small>你的账号</small>
+          <a href="javascript:void(0)" id="wechatCopy" title="点击复制微信号">
+            微信 <small>M406281765（点击复制）</small>
           </a>
         </div>
 
@@ -660,7 +685,7 @@
 
   <!-- 页脚 -->
   <footer class="wrap">
-    <span>© 2025 你的名字</span>
+    <span>© 2025 马静溪 / 天天</span>
     <span>用心打造每一个作品</span>
     <div class="foot-links">
       <a class="link" href="#top">回到顶部 ↑</a>
@@ -680,6 +705,17 @@
     document.addEventListener("keydown", (e) => {
       if (e.key === "Escape") overlay.classList.remove("open");
     });
+
+    const wechatCopy = document.getElementById("wechatCopy");
+    if (wechatCopy) {
+      wechatCopy.addEventListener("click", () => {
+        navigator.clipboard.writeText("M406281765").then(() => {
+          const s = wechatCopy.querySelector("small");
+          s.textContent = "已复制，去微信添加 ✓";
+          setTimeout(() => { s.textContent = "M406281765（点击复制）"; }, 2000);
+        });
+      });
+    }
   </script>
 </body>
 </html>
