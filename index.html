@@ -402,6 +402,14 @@
       margin-bottom: 20px;
     }
     .work-tags { display: flex; gap: 8px; flex-wrap: wrap; }
+    .work-date {
+      margin-top: 20px;
+      font-size: 13px;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      color: var(--forest);
+      opacity: 0.55;
+    }
 
     /* 联系 */
     .contact-links {
@@ -514,6 +522,7 @@
       <a href="#about">关于我</a>
       <a href="#skills">技能</a>
       <a href="#works">作品</a>
+      <a href="#writing">文章</a>
       <a href="#contact">联系</a>
     </nav>
     <p class="menu-meta">Portfolio · 马静溪 / 天天</p>
@@ -655,12 +664,39 @@
       </div>
     </section>
 
+    <!-- ============ 文章 ============ -->
+    <section class="block" id="writing">
+      <div class="wrap">
+        <div class="section-head">
+          <span class="echo" aria-hidden="true">文章</span>
+          <p class="label">04 · 我的文章</p>
+          <h2 class="heading">写下的一些<span class="ghost">思考</span></h2>
+        </div>
+
+        <div class="works">
+          <!-- 以后新增文章时，复制整块 <a class="work">，并把 href 换成新文章的公开链接即可。 -->
+          <a class="work" href="https://www.woshipm.com/ai/6449168.html" target="_blank" rel="noopener">
+            <span class="work-index">01</span>
+            <div>
+              <h3 class="work-title">模型越强越好吗？小团队做AI产品的前期选型方法</h3>
+              <p class="work-desc">小团队选择AI模型时，不必追求能力最强，而应从真实业务任务出发，用质量、成本、速度和风险标准选出当前最合适的模型。</p>
+              <div class="work-tags">
+                <span class="pill">AI 产品</span>
+                <span class="pill">模型选型</span>
+              </div>
+              <p class="work-date">2026 年 8 月 · 人人都是产品经理</p>
+            </div>
+          </a>
+        </div>
+      </div>
+    </section>
+
     <!-- ============ 联系 ============ -->
     <section class="block" id="contact">
       <div class="wrap">
         <div class="section-head">
           <span class="echo bubblegum" aria-hidden="true">联系</span>
-          <p class="label pink">04 · 联系我</p>
+          <p class="label pink">05 · 联系我</p>
           <h2 class="heading">来<span class="accent">聊聊</span></h2>
         </div>
 
