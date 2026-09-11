@@ -3,13 +3,13 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta name="description" content="我的个人网站 — 关于我、技能与作品" />
+  <meta name="description" content="马静溪的个人网站 — AI 产品能力、项目经历与文章" />
   <title>马静溪 · 天天 — 个人网站</title>
 
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link
-    href="https://fonts.googleapis.com/css2?family=Anton&family=Noto+Sans+SC:wght@400;500;700;900&family=Space+Grotesk:wght@400;500;700&display=swap"
+    href="https://fonts.googleapis.com/css2?family=Anton&amp;family=Noto+Sans+SC:wght@400;500;700;900&amp;family=Space+Grotesk:wght@400;500;700&amp;display=swap"
     rel="stylesheet"
   />
 
@@ -26,6 +26,7 @@
       --black: #000000;     /* Charcoal Black */
 
       --font-display: "Anton", "Noto Sans SC", "PingFang SC", "Microsoft YaHei", sans-serif;
+      --font-heading: "Noto Sans SC", "PingFang SC", "Microsoft YaHei", sans-serif;
       --font-body: "Space Grotesk", "Noto Sans SC", "PingFang SC", "Microsoft YaHei", sans-serif;
     }
 
@@ -148,19 +149,18 @@
     /* 展示标题 */
     .display,
     .heading {
-      font-family: var(--font-display);
-      font-weight: 900;
-      text-transform: uppercase;
-      letter-spacing: -0.01em;
+      font-family: var(--font-heading);
+      font-weight: 700;
+      letter-spacing: -0.035em;
     }
     .display {
       font-size: clamp(2.2rem, 5vw, 3.8rem);
-      line-height: 0.95;
+      line-height: 1.05;
       color: var(--magenta);
     }
     .heading {
       font-size: clamp(1.9rem, 3.5vw, 2.8rem);
-      line-height: 0.95;
+      line-height: 1.15;
       color: var(--forest);
     }
     .heading .accent,
@@ -310,9 +310,10 @@
       padding-left: clamp(24px, 4vw, 56px);
     }
     .stat-number {
-      font-family: var(--font-display);
+      font-family: var(--font-heading);
+      font-weight: 700;
       font-size: clamp(2.5rem, 5vw, 3.6rem);
-      line-height: 0.8;
+      line-height: 1;
       color: var(--magenta);
       display: block;
     }
@@ -326,17 +327,17 @@
       opacity: 0.7;
     }
 
-    /* 技能列表 */
+    /* 个人优势列表 */
     .skill-list {
       list-style: none;
       border-top: 1px solid var(--lilac);
     }
     .skill-row {
       display: grid;
-      grid-template-columns: 80px 1fr 1fr;
-      gap: 24px;
-      align-items: baseline;
-      padding: clamp(28px, 4vw, 48px) 0;
+      grid-template-columns: 64px minmax(280px, 0.85fr) minmax(0, 1.15fr);
+      gap: clamp(20px, 3vw, 44px);
+      align-items: start;
+      padding: clamp(24px, 3vw, 38px) 0;
       border-bottom: 1px solid var(--lilac);
     }
     .skill-index {
@@ -345,20 +346,22 @@
       color: var(--bubblegum);
     }
     .skill-name {
-      font-family: var(--font-display);
-      font-size: clamp(1.5rem, 3vw, 2.2rem);
-      line-height: 0.9;
-      text-transform: uppercase;
+      font-family: var(--font-heading);
+      font-size: clamp(1.4rem, 2.3vw, 1.95rem);
+      font-weight: 700;
+      line-height: 1.22;
+      letter-spacing: -0.025em;
       color: var(--forest);
     }
     .skill-desc {
       font-size: 16px;
-      line-height: 1.5;
+      line-height: 1.72;
       color: var(--forest);
-      opacity: 0.8;
+      opacity: 0.9;
+      max-width: 62ch;
     }
 
-    /* 作品列表 */
+    /* 项目与文章列表 */
     .works {
       display: flex;
       flex-direction: column;
@@ -385,10 +388,11 @@
     }
     .work:hover .work-index { color: var(--magenta); }
     .work-title {
-      font-family: var(--font-display);
-      font-size: clamp(1.6rem, 3vw, 2.4rem);
-      line-height: 0.9;
-      text-transform: uppercase;
+      font-family: var(--font-heading);
+      font-size: clamp(1.5rem, 2.6vw, 2.15rem);
+      font-weight: 700;
+      line-height: 1.18;
+      letter-spacing: -0.025em;
       color: var(--forest);
       margin-bottom: 16px;
     }
@@ -410,6 +414,63 @@
       color: var(--forest);
       opacity: 0.55;
     }
+    .project-aside {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 18px;
+    }
+    .project-kicker {
+      font-size: 13px;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--magenta);
+    }
+    .project-card .work-desc {
+      max-width: 66ch;
+      margin-bottom: 28px;
+    }
+    .result-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 12px;
+      margin: 28px 0;
+    }
+    .result-item {
+      min-height: 112px;
+      padding: 20px;
+      border-radius: 18px;
+      background: var(--blush);
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      gap: 12px;
+    }
+    .result-item strong {
+      font-family: var(--font-heading);
+      font-size: clamp(1.5rem, 2.5vw, 2.1rem);
+      font-weight: 700;
+      line-height: 1.05;
+      color: var(--magenta);
+    }
+    .result-item span {
+      font-size: 13px;
+      line-height: 1.35;
+      color: var(--forest);
+      opacity: 0.72;
+    }
+    .project-role {
+      max-width: 68ch;
+      font-size: 15px;
+      line-height: 1.7;
+      color: var(--forest);
+      opacity: 0.82;
+    }
+    .project-role strong {
+      color: var(--forest);
+      opacity: 1;
+    }
 
     /* 联系 */
     .contact-links {
@@ -419,10 +480,10 @@
       margin-top: 32px;
     }
     .contact-links a {
-      font-family: var(--font-display);
+      font-family: var(--font-heading);
+      font-weight: 700;
       font-size: clamp(1.5rem, 3.5vw, 2.4rem);
-      line-height: 0.95;
-      text-transform: uppercase;
+      line-height: 1.15;
       color: var(--forest);
       text-decoration: none;
       display: inline-flex;
@@ -491,11 +552,19 @@
         padding-left: 0;
         padding-top: 32px;
       }
-      .skill-row { grid-template-columns: 48px 1fr; }
+      .skill-row { grid-template-columns: 42px 1fr; }
       .skill-desc { grid-column: 2; }
       .work { grid-template-columns: 1fr; }
+      .project-aside { gap: 12px; }
+      .result-grid { grid-template-columns: 1fr; }
+      .result-item {
+        min-height: 0;
+        flex-direction: row;
+        align-items: baseline;
+      }
       footer { flex-direction: column; align-items: flex-start; }
     }
+
   </style>
 </head>
 <body id="top">
@@ -520,8 +589,8 @@
   <div class="menu-overlay" id="menuOverlay">
     <nav>
       <a href="#about">关于我</a>
-      <a href="#skills">技能</a>
-      <a href="#works">作品</a>
+      <a href="#advantages">个人优势</a>
+      <a href="#projects">项目经历</a>
       <a href="#writing">文章</a>
       <a href="#contact">联系</a>
     </nav>
@@ -535,13 +604,13 @@
       <div class="hero-id">
         <img class="avatar" src="avatar.jpg" alt="马静溪的头像" />
         <div class="hero-info">
-          <p class="label pink">AI 产品构建者 · AI Product Builder</p>
+          <p class="label pink">AI 产品经理 · AI Product Manager</p>
           <h1 class="display">马静溪<span class="accent"> / 天天</span></h1>
-          <p class="hero-sub">我是一名 AI 产品构建者，正在学习 AI 产品设计与开发。希望通过 AI 解决真实问题，把复杂技术转化为简单、实用的产品，并通过持续构建原型验证想法。</p>
+          <p class="hero-sub">3 年 AI 产品实践，专注 RAG / Agent、多模态文档理解与 AIGC。从真实业务问题出发，推动 AI 产品从方案设计、质量评测走向上线与持续运营。</p>
         </div>
       </div>
       <div class="hero-actions">
-        <a class="pill" href="#works">查看作品</a>
+        <a class="pill" href="#projects">查看项目</a>
         <a class="link" href="#contact">联系我 →</a>
       </div>
     </section>
@@ -558,108 +627,167 @@
         <div class="about-grid">
           <div>
             <p class="body">
-              这里是你的个人介绍。可以写你的背景、经历、爱好，以及你对所做事情的热情。例如：我是一名产品经理 / 设计师 / 开发者，专注于创造有温度的产品。
+              我是一名 AI 产品经理，拥有腾讯智影 AIGC 产品与化工外贸 AI 应用的实践经历，关注大模型如何真正进入业务流程，而不只是停留在概念演示。
             </p>
             <p class="body" style="margin-top: 24px;">
-              还可以补充你的方法论：我习惯从用户出发，用数据验证假设，把复杂问题拆解成可落地的方案。
+              我习惯从用户与业务现场出发，把复杂问题拆成产品架构、模型能力与验证指标，并协同研发完成从 0→1 上线，再通过真实数据、Badcase 和用户反馈持续迭代。
             </p>
           </div>
 
           <div class="stats">
             <div>
-              <span class="stat-number">5+</span>
-              <span class="stat-label">年经验</span>
+              <span class="stat-number">3年</span>
+              <span class="stat-label">AI 产品实践</span>
             </div>
             <div>
-              <span class="stat-number">30</span>
-              <span class="stat-label">完成项目</span>
+              <span class="stat-number">4个</span>
+              <span class="stat-label">核心项目</span>
             </div>
             <div>
-              <span class="stat-number">12</span>
-              <span class="stat-label">合作团队</span>
+              <span class="stat-number">2个</span>
+              <span class="stat-label">0→1 上线项目</span>
             </div>
           </div>
         </div>
       </div>
     </section>
 
-    <!-- ============ 技能 ============ -->
-    <section class="block" id="skills">
+    <!-- ============ 个人优势 ============ -->
+    <section class="block" id="advantages">
       <div class="wrap">
         <div class="section-head">
-          <span class="echo bubblegum" aria-hidden="true">技能</span>
-          <p class="label">02 · 我的技能</p>
-          <h2 class="heading">我擅长的<span class="accent">事情</span></h2>
+          <span class="echo bubblegum" aria-hidden="true">优势</span>
+          <p class="label">02 · 个人优势</p>
+          <h2 class="heading">把 AI 做成<span class="accent">可用的产品</span></h2>
         </div>
 
         <ul class="skill-list">
           <li class="skill-row">
             <span class="skill-index">01</span>
-            <h3 class="skill-name">产品设计</h3>
-            <p class="skill-desc">需求分析、原型设计、用户体验研究，把想法变成可落地的产品。</p>
+            <h3 class="skill-name">AI 产品 0→1 与业务交付</h3>
+            <p class="skill-desc">覆盖业务调研、需求建模、产品架构、PRD、研发协同、测试验收到上线运营。推动 AI 客服与外贸单证平台从 0→1 落地，单证平台月均处理 300—500 份单据，重复录入耗时缩短 60%。</p>
           </li>
           <li class="skill-row">
             <span class="skill-index">02</span>
-            <h3 class="skill-name">前端开发</h3>
-            <p class="skill-desc">HTML / CSS / JavaScript，构建响应式、现代化的网页界面。</p>
+            <h3 class="skill-name">模型选型与 AI 质量评测</h3>
+            <p class="skill-desc">围绕准确性、知识遵循、字段提取、响应时延与调用成本建立测试集和评测口径；真实单据核心字段识别准确率约 95%—98%，并通过 Badcase 分类、归因与复测持续优化。</p>
           </li>
           <li class="skill-row">
             <span class="skill-index">03</span>
-            <h3 class="skill-name">数据分析</h3>
-            <p class="skill-desc">用数据驱动决策，洞察用户行为，优化产品体验。</p>
+            <h3 class="skill-name">AIGC 工作流与 LoRA 训练</h3>
+            <p class="skill-desc">具备 ComfyUI 工作流搭建、人像生成推理与效果调优经验，熟悉 ReActor、InstantID＋MaskDetailer；完成角色 LoRA 数据清洗、超参数实验、质量评测与版本复测。</p>
           </li>
           <li class="skill-row">
             <span class="skill-index">04</span>
-            <h3 class="skill-name">团队协作</h3>
-            <p class="skill-desc">跨部门沟通与项目管理，推动团队高效达成目标。</p>
+            <h3 class="skill-name">RAG / Agent 应用设计</h3>
+            <p class="skill-desc">基于 Dify 设计中英文 RAG 问答与人工转接流程，覆盖知识库、Embedding、Rerank、Prompt、输出约束与异常兜底；以约 100 条问题完成 3 轮验证，并具备工具调用、上下文与状态编排能力。</p>
+          </li>
+          <li class="skill-row">
+            <span class="skill-index">05</span>
+            <h3 class="skill-name">AI 辅助全栈 MVP 交付</h3>
+            <p class="skill-desc">使用 Codex、Claude Code、Cursor 与 VS Code，独立完成情感陪伴产品 MVP 的需求定义、交互设计、功能开发、LLM / API 接入与部署上线，快速验证产品方案与技术可行性。</p>
           </li>
         </ul>
       </div>
     </section>
 
-    <!-- ============ 作品 ============ -->
-    <section class="block" id="works">
+    <!-- ============ 项目经历 ============ -->
+    <section class="block" id="projects">
       <div class="wrap">
         <div class="section-head">
-          <span class="echo" aria-hidden="true">作品</span>
-          <p class="label">03 · 精选作品</p>
-          <h2 class="heading">做过的一些<span class="ghost">项目</span></h2>
+          <span class="echo" aria-hidden="true">项目</span>
+          <p class="label">03 · 项目经历</p>
+          <h2 class="heading">从问题出发，<span class="ghost">用结果回答</span></h2>
         </div>
 
         <div class="works">
-          <a class="work" href="#">
-            <span class="work-index">01</span>
-            <div>
-              <h3 class="work-title">项目名称一</h3>
-              <p class="work-desc">一句话描述这个项目解决了什么问题、带来了什么价值。</p>
+          <article class="work project-card">
+            <div class="project-aside">
+              <span class="work-index">01</span>
+              <p class="project-kicker">0→1 · 多模态文档理解</p>
               <div class="work-tags">
-                <span class="pill">产品</span>
-                <span class="pill">设计</span>
+                <span class="pill">AI 产品</span>
+                <span class="pill">模型选型</span>
+                <span class="pill">HITL</span>
               </div>
             </div>
-          </a>
-          <a class="work" href="#">
-            <span class="work-index">02</span>
-            <div>
-              <h3 class="work-title">项目名称二</h3>
-              <p class="work-desc">一句话描述这个项目解决了什么问题、带来了什么价值。</p>
+            <div class="project-content">
+              <h3 class="work-title">AI单证通｜外贸单证管理平台</h3>
+              <p class="work-desc">针对订单信息重复录入、非结构化单据处理与进度分散的问题，建设集订单协同、AI 字段抽取、规则校验和模板制单于一体的内部平台。</p>
+              <div class="result-grid" aria-label="项目成果">
+                <div class="result-item"><strong>4个月</strong><span>完成平台 0→1 上线</span></div>
+                <div class="result-item"><strong>95%—98%</strong><span>核心字段识别准确率</span></div>
+                <div class="result-item"><strong>60%</strong><span>订单重复录入耗时降幅</span></div>
+              </div>
+              <p class="project-role"><strong>我的关键工作：</strong>完成业务调研、数据建模、角色权限、原型、PRD 与验收标准；设计“多模态识别—规则校验—人工审核—结构化入库—模板制单”链路；以 20—30 份真实单据开展离线 Eval，对比 Doubao 与 Qwen 系列模型，并结合质量、时延和成本推动 Qwen3-VL-8B-Instruct 上线。</p>
+            </div>
+          </article>
+
+          <article class="work project-card">
+            <div class="project-aside">
+              <span class="work-index">02</span>
+              <p class="project-kicker">双语 RAG · 人工转接</p>
               <div class="work-tags">
-                <span class="pill">前端</span>
-                <span class="pill">UI</span>
+                <span class="pill">Dify</span>
+                <span class="pill">RAG</span>
+                <span class="pill">Prompt</span>
               </div>
             </div>
-          </a>
-          <a class="work" href="#">
-            <span class="work-index">03</span>
-            <div>
-              <h3 class="work-title">项目名称三</h3>
-              <p class="work-desc">一句话描述这个项目解决了什么问题、带来了什么价值。</p>
+            <div class="project-content">
+              <h3 class="work-title">AI询盘通｜化工外贸 AI 智能客服</h3>
+              <p class="work-desc">为解决跨时区询盘响应慢、专业资料依赖人工查找的问题，搭建支持中英文问答、资料检索与人工转接的 AI 客服系统。</p>
+              <div class="result-grid" aria-label="项目成果">
+                <div class="result-item"><strong>约2个月</strong><span>完成正式上线</span></div>
+                <div class="result-item"><strong>20+ / 60+</strong><span>化工产品 / SDS 与 COA 文档</span></div>
+                <div class="result-item"><strong>3轮</strong><span>约 100 条问题专项验证</span></div>
+              </div>
+              <p class="project-role"><strong>我的关键工作：</strong>整理 20+ 化工产品、40+ 份中英文 SDS 和 20+ 份 COA，建立可维护的知识体系；基于 Dify 设计“Embedding 检索—Rerank—LLM 生成—人工转接”链路；对比 Qwen、DeepSeek 与 Doubao，从准确性、知识遵循、时延和成本等维度完成选型与迭代。</p>
+            </div>
+          </article>
+
+          <article class="work project-card">
+            <div class="project-aside">
+              <span class="work-index">03</span>
+              <p class="project-kicker">腾讯智影 · AIGC 人像</p>
               <div class="work-tags">
-                <span class="pill">App</span>
-                <span class="pill">增长</span>
+                <span class="pill">ComfyUI</span>
+                <span class="pill">效果评测</span>
+                <span class="pill">数据埋点</span>
               </div>
             </div>
-          </a>
+            <div class="project-content">
+              <h3 class="work-title">AI 网感自拍</h3>
+              <p class="work-desc">支持用户上传个人照片、选择模板，快速生成不同风格的人像写真；重点提升身份一致性、生成自然度和出图稳定性。</p>
+              <div class="result-grid" aria-label="项目成果">
+                <div class="result-item"><strong>2套</strong><span>人像生成方案对照评测</span></div>
+                <div class="result-item"><strong>8类</strong><span>典型 Badcase 沉淀</span></div>
+                <div class="result-item"><strong>5类</strong><span>关键质量影响因素</span></div>
+              </div>
+              <p class="project-role"><strong>我的关键工作：</strong>对比 ReActor 与 InstantID＋MaskDetailer，并参与参数和人脸区域调优；基于真实输入、模板与结果开展质量评测，识别面部遮挡等 P0 问题；设计从上传到保存的核心链路埋点。项目于 2023 年 10 月上线，相关输入规范、模板筛选与模型优化方案获团队采纳。</p>
+            </div>
+          </article>
+
+          <article class="work project-card">
+            <div class="project-aside">
+              <span class="work-index">04</span>
+              <p class="project-kicker">腾讯视频 IP · LoRA</p>
+              <div class="work-tags">
+                <span class="pill">数据集</span>
+                <span class="pill">模型实验</span>
+                <span class="pill">质量验收</span>
+              </div>
+            </div>
+            <div class="project-content">
+              <h3 class="work-title">《庆余年2》AI 盲盒</h3>
+              <p class="work-desc">围绕影视 IP 宣发打造 AI 数字盲盒玩法，通过角色 LoRA 训练与效果优化，保障 Q 版形象的角色辨识度、服装还原度和生成稳定性。</p>
+              <div class="result-grid" aria-label="项目成果">
+                <div class="result-item"><strong>2名角色</strong><span>多服装 LoRA 模型上线</span></div>
+                <div class="result-item"><strong>9组</strong><span>结构化训练素材</span></div>
+                <div class="result-item"><strong>294张</strong><span>累计清洗整理图片</span></div>
+              </div>
+              <p class="project-role"><strong>我的关键工作：</strong>将角色相似度、Q 版风格和服装还原等效果目标转化为训练数据标准；负责范闲、范若若素材收集、清洗与去重，参与 LoRA rank、学习率和训练步数实验；通过多轮复测定位数据覆盖或参数问题，推动候选版本筛选并应用于正式上线玩法。</p>
+            </div>
+          </article>
         </div>
       </div>
     </section>
@@ -721,8 +849,8 @@
 
   <!-- 页脚 -->
   <footer class="wrap">
-    <span>© 2025 马静溪 / 天天</span>
-    <span>用心打造每一个作品</span>
+    <span>© 2026 马静溪 / 天天</span>
+    <span>从真实问题出发，用结果验证产品</span>
     <div class="foot-links">
       <a class="link" href="#top">回到顶部 ↑</a>
     </div>
